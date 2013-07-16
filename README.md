@@ -49,7 +49,7 @@ More Information
 
 For Redis-Clouds's developer resources visit http://redis-cloud.com/redis/developers
 
-For general information about using redis see https://redis.io
+For general information about using redis see http://redis.io
 
 For info on using redis with other programming languages visit: http://redis.io/clients
 
