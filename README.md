@@ -18,12 +18,14 @@ If `--from-code` is not recognized, update your `rhc` gem.
 
 1. Sign up for a free account at http://redis-cloud.com
 2. Create a redis instance
-3. Retrieve your instance's url
-4. Enter the url in <strong>config.rb</strong>
+3. Retrieve your instance's host, port and optional password
+4. Enter the redis instances info in <strong>config.rb</strong>
 
-```
+```ruby
   config = {
-    url: 'redis://url_to_your_redis_cloud_instance_goes_here'
+    host: 'your_redis_cloud_host_address.com',
+    port: 1234, # Your Redis Cloud instance's port number
+    password: 'your_redis_instances_password'  # Delete this line if your redis cloud instance has no password
   }
 ```
 
