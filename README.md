@@ -10,7 +10,7 @@ Create an account at http://openshift.redhat.com/ and set up you local machine w
 
 Create a ruby-1.9 application (you can call your application whatever you want)
 ```
-    rhc app create rediscloud ruby-1.9 --from-code git://github.com/openshift-quickstart/rediscloud-openshift-quickstart.git
+    rhc app create rediscloudapp ruby-1.9 --from-code git://github.com/openshift-quickstart/rediscloud-openshift-quickstart.git
 ```
 If `--from-code` is not recognized, update your `rhc` gem.
 
@@ -40,7 +40,7 @@ If `--from-code` is not recognized, update your `rhc` gem.
 ###Step 4. View your app!###
 
 ```
-    http://rediscloud-$yournamespace.rhcloud.com
+    http://rediscloudapp-$yournamespace.rhcloud.com
 ```
 
 
