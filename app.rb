@@ -9,9 +9,9 @@ get '/' do
   begin
     case params[:a]
       when 'set'
-        @res = @redis.set('lunch', 'hummus, chips, salad')
+        @res = @redis.set('foo', 'bar')
       when 'get'
-        @res = @redis.get('lunch')
+        @res = @redis.get('foo')
       when 'info'
         @redis.info.each { |k, v| 
           @res += "#{k}: #{v}<br />" 
