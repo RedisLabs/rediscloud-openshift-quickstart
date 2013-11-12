@@ -194,18 +194,20 @@
 
   <ol>
     <li>1. Sign up for free at <a href="http://www.redis-cloud.com">Redis Cloud</a></li>
-    <li>2. Create a redis db and configure your db's url in config.rb (see below)</li>
-    <li>3. Redeploy this OpenShift app</li>
+    <li>2. Create a redis db and add your DB's connection details to your app (see below)</li>
+    <li>3. Reload the new application config to connect to RedisCloud</li>
   </ol>
 
-  <b>config.rb</b>
-  <pre>
-  config = {
-    host: 'redis-cloud-host', # Replace with your redis cloud db's hostname
-    port: 6379,             # Replace 6379 with your redis cloud db's port
-    password: 'foobared'    # Replace with db password or remove if no password
-  }
-  </pre>
+  <b>Configure the following environment variables:</b>
+  <pre>rhc env set REDISCLOUD_URL=YOUR_REDIS_CLOUD_HOSTNAME</pre>
+  <pre>rhc env set REDISCLOUD_PORT=YOUR_REDIS_CLOUD_PORT</pre>
+  <pre>rhc env set REDISCLOUD_PASSWORD=YOUR_REDIS_CLOUD_PASSWORD</pre>
+  
+  <b>Then, run the following to restart your application and connect to RedisCloud:</b>
+  <pre>rhc app restart</pre>
+
+  <b>To see a list of your application's current configuration keys, type:</b>
+  <pre>rhc env list</pre>
 
 <% end %>
 
