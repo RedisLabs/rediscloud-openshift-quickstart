@@ -4,45 +4,26 @@ Redis Cloud on OpenShift in 5 Minutes
 
 This git repository helps you easily integrate the Redis Cloud service into your OpenShift apps.
 
-###Step 1. Create OpenShift App###
+###Create your application###
 
-Create an account at http://openshift.redhat.com/ and set up you local machine with the client tools.
-
-Create a ruby-1.9 application (you can call your application whatever you want)
-```
-    rhc app create rediscloudapp ruby-1.9 --from-code git://github.com/openshift-quickstart/rediscloud-openshift-quickstart.git
-```
-If `--from-code` is not recognized, update your `rhc` gem.
-
-###Step 2. Configure Redis Cloud###
-
-1. Sign up for a free account at http://redis-cloud.com
-2. Create a redis instance
-3. Retrieve your instance's host, port and optional password
-4. Enter the redis instances info in <strong>config.rb</strong>
-
-```ruby
-  config = {
-    host: 'your_redis_cloud_host_address.com',
-    port: 1234, # Your Redis Cloud instance's port number
-    password: 'your_redis_instances_password'  # Delete this line if your redis cloud instance has no password
-  }
-```
-
-###Step 3. Deploy your app###
+1. Create an account at http://openshift.redhat.com/ and set up you local machine with the client tools.
+2. Sign up for a free account at http://redis-cloud.com
+3. Create a redis instance, noting the connection details
+4. Clone and Deploy on OpenShift, supplying your redis host, port, and password as application configuration details.  
 
 ```
-    git add .
-    git commit -m "my first commmit"
-    git push
+    rhc app create redisclouddemo ruby-1.9 --from-code git://github.com/openshift-quickstart/rediscloud-openshift-quickstart.git --env REDISCLOUD_URL=YOUR_REDISCLOUD_HOSTNAME --env REDISCLOUD_PORT=YOUR_REDISCLOUD_DB_PORT --env=REDISCLOUD_PASSWORD=YOUR_REDISCLOUD_DB_PASS
 ```
+I've uesed "redisclouddemo" as my application name in the above example. I've also supplied an application source url, as well as several configuration details.
+If the `--from-code` option is not recognized, update your `rhc` gem.
 
-###Step 4. View your app!###
+###View your app###
 
 ```
     http://rediscloudapp-$yournamespace.rhcloud.com
 ```
 
+For additional information on using environment variables, type `rhc env help`.  You may need to run `rhc app reload` in order for changes to the application environment to be recognised.
 
 More Information
 ----------------------------
