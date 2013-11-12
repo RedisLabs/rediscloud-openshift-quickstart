@@ -1,4 +1,3 @@
-
 Redis Cloud on OpenShift in 5 Minutes
 -------------------------------------
 
@@ -12,15 +11,15 @@ This git repository helps you easily integrate the Redis Cloud service into your
 4. Clone and Deploy on OpenShift, supplying your redis host, port, and password as application configuration details.  
 
 ```
-    rhc app create redisclouddemo ruby-1.9 --from-code git://github.com/openshift-quickstart/rediscloud-openshift-quickstart.git --env REDISCLOUD_URL=YOUR_REDISCLOUD_HOSTNAME --env REDISCLOUD_PORT=YOUR_REDISCLOUD_DB_PORT --env=REDISCLOUD_PASSWORD=YOUR_REDISCLOUD_DB_PASS
+    rhc app create rediscloud ruby-1.9 --from-code git://github.com/ryanj/rediscloud-sinatra-quickstart.git --env REDISCLOUD_URL=YOUR_REDISCLOUD_HOSTNAME --env REDISCLOUD_PORT=YOUR_REDISCLOUD_DB_PORT --env=REDISCLOUD_PASSWORD=YOUR_REDISCLOUD_DB_PASS
 ```
-I've uesed "redisclouddemo" as my application name in the above example. I've also supplied an application source url, as well as several configuration details.
+I've uesed "rediscloud" as my application name in the above example. I've also supplied an application source url, as well as several configuration details.
 If the `--from-code` option is not recognized, update your `rhc` gem.
 
 ###View your app###
 
 ```
-    http://rediscloudapp-$yournamespace.rhcloud.com
+    http://rediscloud-$yournamespace.rhcloud.com
 ```
 
 For additional information on using environment variables, type `rhc env help`.  You may need to run `rhc app reload` in order for changes to the application environment to be recognised.
