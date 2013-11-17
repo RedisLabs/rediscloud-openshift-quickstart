@@ -194,19 +194,32 @@
 
   <ol>
     <li>1. Sign up for free at <a href="http://www.redis-cloud.com">Redis Cloud</a></li>
-    <li>2. Create a redis db and configure your db's url in config.rb (see below)</li>
-    <li>3. Redeploy this OpenShift app</li>
+    <li>2. Create a redis db and add your DB's connection details to your app (see below)</li>
+    <li>3. Reload the new application config to connect to RedisCloud</li>
   </ol>
 
-  <b>config.rb</b>
-  <pre>
-  config = {
-    host: 'redis-cloud-host', # Replace with your redis cloud db's hostname
-    port: 6379,             # Replace 6379 with your redis cloud db's port
-    password: 'foobared'    # Replace with db password or remove if no password
-  }
-  </pre>
+  <h3>For OpenShift-hosted applications</h3>
+  <p>Use <code>rhc</code> to set the following environment variables for your OpenShift app (substituting in your own values for the provided key names):</p>
 
+  <b>Configure the following environment variables:</b>
+  <pre>rhc env set REDISCLOUD_URL=YOUR_REDIS_CLOUD_HOSTNAME</pre>
+  <pre>rhc env set REDISCLOUD_PORT=YOUR_REDIS_CLOUD_PORT</pre>
+  <pre>rhc env set REDISCLOUD_PASSWORD=YOUR_REDIS_CLOUD_PASSWORD</pre>
+  
+  <b>Then, run the following to restart your application and connect to RedisCloud:</b>
+  <pre>rhc app restart</pre>
+
+  <b>To see a list of your application's current configuration keys, type:</b>
+  <pre>rhc env list</pre>
+
+  <h3>For Local Development</h3>
+  <p>You can run the same code in a local development environment by populating the required environment variables in your local development stage:</p>
+  <pre>export REDISCLOUD_URL=YOUR_REDIS_CLOUD_HOSTNAME</pre>
+  <pre>export REDISCLOUD_PORT=YOUR_REDIS_CLOUD_PORT</pre>
+  <pre>export REDISCLOUD_PASSWORD=YOUR_REDIS_CLOUD_PASSWORD</pre>
+  <p>Then start your local server with:</p>
+  <pre>ruby app.rb</pre>
+  <p>You may need to run <code>npm install</code> or <code>bundle install</code> before starting your local server to in order to make sure that your application has access to all of it's dependencies.</p>
 <% end %>
 
 

@@ -1,9 +1,12 @@
 def get_client
   ### Set the host, port and (optional) password of your Redis Cloud instance ###
+  redis_host = ENV['REDISCLOUD_URL']
+  redis_port = ENV['REDISCLOUD_PORT']
+  redis_password = ENV['REDISCLOUD_PASSWORD']
   config = {
-     host: 'redis-cloud-host', # Replace with your redis cloud db's hostname
-     port: 6379,               # Replace 6379 with your redis cloud db's port
-     password: 'foobared'      # Comment this line if no password set for your db
+     host: redis_host,
+     port: redis_port,
+     password: redis_password
   }
   @redis ||= Redis.new(config)
 end
