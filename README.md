@@ -1,48 +1,60 @@
-
 Redis Cloud on OpenShift in 5 Minutes
 -------------------------------------
 
 This git repository helps you easily integrate the Redis Cloud service into your OpenShift apps.
 
-###Step 1. Create OpenShift App###
+###Create your application###
 
-Create an account at http://openshift.redhat.com/ and set up you local machine with the client tools.
-
-Create a ruby-1.9 application (you can call your application whatever you want)
-```
-    rhc app create rediscloudapp ruby-1.9 --from-code git://github.com/openshift-quickstart/rediscloud-openshift-quickstart.git
-```
-If `--from-code` is not recognized, update your `rhc` gem.
-
-###Step 2. Configure Redis Cloud###
-
-1. Sign up for a free account at http://redis-cloud.com
-2. Create a redis instance
-3. Retrieve your instance's host, port and optional password
-4. Enter the redis instances info in <strong>config.rb</strong>
-
-```ruby
-  config = {
-    host: 'your_redis_cloud_host_address.com',
-    port: 1234, # Your Redis Cloud instance's port number
-    password: 'your_redis_instances_password'  # Delete this line if your redis cloud instance has no password
-  }
-```
-
-###Step 3. Deploy your app###
+1. Create an account at http://openshift.redhat.com/ and set up you local machine with the client tools.
+2. Sign up for a free account at http://redis-cloud.com
+3. Create a redis instance, noting the connection details
+4. Clone and Deploy on OpenShift, supplying your redis host, port, and password as application configuration details.  
 
 ```
-    git add .
-    git commit -m "my first commmit"
-    git push
+    rhc app create rediscloud ruby-1.9 \
+      --from-code http://github.com/GarantiaData/rediscloud-openshift-quickstart.git \
+      --env REDISCLOUD_URL=YOUR_REDISCLOUD_HOSTNAME \
+      --env REDISCLOUD_PORT=YOUR_REDISCLOUD_DB_PORT \
+      --env REDISCLOUD_PASSWORD=YOUR_REDISCLOUD_DB_PASS
 ```
 
-###Step 4. View your app!###
+The above example uses "rediscloud" as the application name. It also includes an application source url, and several application configuration details.
+If the `--from-code` option is not recognized, update your `rhc` gem.
 
-```
-    http://rediscloudapp-$yournamespace.rhcloud.com
-```
+If you failed to include your own Redis Cloud keys when creating your application, *don't worry* - There are notes on how to reconfigure your application in the next section.
 
+When the command completes you should have your own clone of the application source code in a folder named after your app (`rediscloud`), and a live copy of your application running at `http://rediscloud-$yournamespace.rhcloud.com`.
+
+### Using Environment Variables
+Use `rhc` to set the following environment variables for your OpenShift app (substituting in your own values for the provided key names):
+
+    rhc env set REDISCLOUD_URL=YOUR_REDIS_CLOUD_HOSTNAME -a rediscloud
+    rhc env set REDISCLOUD_PORT=YOUR_REDIS_CLOUD_PORT -a rediscloud
+    rhc env set REDISCLOUD_PASSWORD=YOUR_REDIS_CLOUD_PASSWORD -a rediscloud
+
+Then, run the following to restart your application (reloading it's Redis DB configuration):
+
+    rhc app restart rediscloud
+
+You can review your application's full list configuration keys by typing:
+
+    rhc env list rediscloud
+
+### Local Development
+You can run the same code in a local development environment by populating the required environment variables in your local development stage:
+
+    export REDISCLOUD_URL=YOUR_REDIS_CLOUD_HOSTNAME
+    export REDISCLOUD_PORT=YOUR_REDIS_CLOUD_PORT
+    export REDISCLOUD_PASSWORD=YOUR_REDIS_CLOUD_PASSWORD
+
+Then start your local server with:
+
+    ruby app.rb
+
+You may need to run `bundle install` before starting your local server to in order to make sure that your application has access to all of it's dependencies.
+Next, you can edit your local source to start experimenting with your new Redis-powered application.  
+
+When you're ready to deploy an update to OpenShift, `git add`, `git commit`, and `git push` can allow you to update your remote OpenShift example application using [a standard code development workflow](https://www.openshift.com/developers/deploying-and-building-applications).
 
 More Information
 ----------------------------

@@ -9,9 +9,9 @@ get '/' do
   begin
     case params[:a]
       when 'set'
-        @res = @redis.set('foo', 'bar')
+        @res = @redis.set('welcome_msg', 'Hello from Redis!')
       when 'get'
-        @res = @redis.get('foo')
+        @res = @redis.get('welcome_msg') || 'undefined'
       when 'info'
         @redis.info.each { |k, v| 
           @res += "#{k}: #{v}<br />" 
