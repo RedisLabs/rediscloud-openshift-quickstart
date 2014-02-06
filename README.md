@@ -67,4 +67,4 @@ For info on using redis with other programming languages visit: http://redis.io/
 
 For more information on Redis-Cloud visit http://redis-cloud.com
 
-[![githalytics.com alpha](https://cruel-carlota.pagodabox.com/ce7d0e7ab42dee42c060d09d1c655869 "githalytics.com")](http://githalytics.com/GarantiaData/rediscloud-openshift-quickstart)
+[![githalytics.com alpha](https://cruel-carlota.pagodabox.com/5fd16896b6090ca419d72e81802e58c0 "githalytics.com")](http://githalytics.com/RedisLabs/rediscloud-openshift-quickstart)
